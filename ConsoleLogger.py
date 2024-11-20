@@ -1,4 +1,5 @@
 import datetime
+from ILoggerStrategy import ILoggerStrategy
 
 class ConsoleLogger(ILoggerStrategy):
     def log(self, message: str):

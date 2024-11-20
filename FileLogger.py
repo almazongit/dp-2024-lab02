@@ -1,4 +1,5 @@
 import datetime
+from ILoggerStrategy import ILoggerStrategy
 
 class FileLogger(ILoggerStrategy):
     def __init__(self, file_path: str):
