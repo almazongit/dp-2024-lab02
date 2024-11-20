@@ -1,7 +1,7 @@
-from ConsoleLogger import ConsoleLogger
-from FileLogger import FileLogger
-from UpperCaseFileLogger import UpperCaseFileLogger
-from Logger import Logger
+from logger.ConsoleLogger import ConsoleLogger
+from logger.FileLogger import FileLogger
+from logger.UpperCaseFileLogger import UpperCaseFileLogger
+from logger.Logger import Logger
 
 if __name__ == "__main__":
     # Логирование в консоль
