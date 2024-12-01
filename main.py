@@ -36,3 +36,15 @@ class Logger:
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
         formatted_message = f"{timestamp} - {message}"
         self.strategy.log(formatted_message)
+if __name__ == "__main__":
+    # Логирование в консоль
+    console_logger = Logger(ConsoleLogStrategy())
+    console_logger.log("Это сообщение для консоли.")
+
+    # Логирование в файл
+    file_logger = Logger(FileLogStrategy("log.txt"))
+    file_logger.log("Это сообщение для файла.")
+
+    # Логирование в файл в верхнем регистре
+    upper_case_file_logger = Logger(UpperCaseFileLogStrategy("upper_log.txt"))
+    upper_case_file_logger.log("Это сообщение для файла в верхнем регистре.")
