@@ -3,7 +3,7 @@ name: CI Workflow
 on:
   push:
     branches:
-      - main  # Укажите вашу основную ветку
+      - feature  # Укажите вашу основную ветку
   pull_request:
 
 jobs:
