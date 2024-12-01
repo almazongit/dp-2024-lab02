@@ -1,0 +1,29 @@
+name: Python Logging Workflow
+
+on:
+  push:
+    branches:
+      - main  # Укажите вашу основную ветку
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Проверка исходного кода
+        uses: actions/checkout@v2
+
+      - name: Установка Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # Укажите нужную версию Python
+
+      - name: Установка зависимостей
+        run: |
+          python -m pip install --upgrade pip
+          # Если у вас есть зависимости в requirements.txt, раскомментируйте следующую строку
+          # pip install -r requirements.txt
+
+      - name: Запуск скрипта
+        run: python ваш_скрипт.py  # Замените на имя вашего файла
