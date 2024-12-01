@@ -1,5 +1,7 @@
 import unittest
 import os
+import sys
+from io import StringIO
 from logger import Logger, ConsoleLogStrategy, FileLogStrategy, UpperCaseFileLogStrategy
 
 class TestLogger(unittest.TestCase):
@@ -20,10 +22,18 @@ class TestLogger(unittest.TestCase):
         """Тестирование логирования в консоль."""
         console_logger = Logger(ConsoleLogStrategy())
         
-        # Используем контекстный менеджер для перехвата вывода в консоль.
-        with self.assertLogs(level='INFO') as log:
-            console_logger.log("Тестовое сообщение для консоли.")
-            self.assertIn("Тестовое сообщение для консоли.", log.output)
+        # Перенаправление вывода в строковый поток
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        
+        console_logger.log("Тестовое сообщение для консоли.")
+        
+        # Восстановление стандартного вывода
+        sys.stdout = sys.__stdout__
+        
+        # Проверка вывода
+        output = captured_output.getvalue().strip()
+        self.assertIn("Тестовое сообщение для консоли.", output)
 
     def test_file_logging(self):
         """Тестирование логирования в файл."""
