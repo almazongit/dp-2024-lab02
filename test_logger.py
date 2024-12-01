@@ -1,4 +1,3 @@
-# test_logger.py
 import unittest
 import os
 from logger import Logger, ConsoleLogStrategy, FileLogStrategy, UpperCaseFileLogStrategy
