@@ -1,0 +1,29 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - feature  
+  pull_request:
+    branches:
+      - feature 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Проверка исходного кода
+        uses: actions/checkout@v2
+
+      - name: Установка Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8' 
+
+      - name: Установка зависимостей
+        run: |
+          python3 -m pip install --upgrade pip
+
+      - name: Запуск скрипта
+        run: python test_logger.py  
