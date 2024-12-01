@@ -6,3 +6,6 @@ class LogStrategy(ABC):
     def log(self, message: str):
         pass
 
+class ConsoleLogStrategy(LogStrategy):
+    def log(self, message: str):
+        print(message)
