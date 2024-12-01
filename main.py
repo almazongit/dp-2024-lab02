@@ -24,3 +24,15 @@ class UpperCaseFileLogStrategy(LogStrategy):
     def log(self, message: str):
         with open(self.filename, 'a') as file:
             file.write(message.upper() + '\n')
+
+class Logger:
+    def __init__(self, strategy: LogStrategy):
+        self.strategy = strategy
+
+    def set_strategy(self, strategy: LogStrategy):
+        self.strategy = strategy
+
+    def log(self, message: str):
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+        formatted_message = f"{timestamp} - {message}"
+        self.strategy.log(formatted_message)
