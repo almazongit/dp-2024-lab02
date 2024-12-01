@@ -1,29 +1,35 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 
+
 class LogStrategy(ABC):
     @abstractmethod
     def log(self, message: str):
         pass
 
+
 class ConsoleLogStrategy(LogStrategy):
     def log(self, message: str):
         print(message)
+
+
 class FileLogStrategy(LogStrategy):
     def __init__(self, filename: str):
         self.filename = filename
 
     def log(self, message: str):
-        with open(self.filename, 'a') as file:
-            file.write(message + '\n')
+        with open(self.filename, "a") as file:
+            file.write(message + "\n")
+
 
 class UpperCaseFileLogStrategy(LogStrategy):
     def __init__(self, filename: str):
         self.filename = filename
 
     def log(self, message: str):
-        with open(self.filename, 'a') as file:
-            file.write(message.upper() + '\n')
+        with open(self.filename, "a") as file:
+            file.write(message.upper() + "\n")
+
 
 class Logger:
     def __init__(self, strategy: LogStrategy):
@@ -36,6 +42,8 @@ class Logger:
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
         formatted_message = f"{timestamp} - {message}"
         self.strategy.log(formatted_message)
+
+
 if __name__ == "__main__":
     # Логирование в консоль
     console_logger = Logger(ConsoleLogStrategy())
