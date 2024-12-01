@@ -16,3 +16,11 @@ class FileLogStrategy(LogStrategy):
     def log(self, message: str):
         with open(self.filename, 'a') as file:
             file.write(message + '\n')
+
+class UpperCaseFileLogStrategy(LogStrategy):
+    def __init__(self, filename: str):
+        self.filename = filename
+
+    def log(self, message: str):
+        with open(self.filename, 'a') as file:
+            file.write(message.upper() + '\n')
