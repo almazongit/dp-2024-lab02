@@ -9,3 +9,10 @@ class LogStrategy(ABC):
 class ConsoleLogStrategy(LogStrategy):
     def log(self, message: str):
         print(message)
+class FileLogStrategy(LogStrategy):
+    def __init__(self, filename: str):
+        self.filename = filename
+
+    def log(self, message: str):
+        with open(self.filename, 'a') as file:
+            file.write(message + '\n')
