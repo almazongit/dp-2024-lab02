@@ -1,20 +1,17 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 
-# Абстрактный класс для стратегии логирования
 class LogStrategy(ABC):
     @abstractmethod
     def log(self, message: str):
         """Абстрактный метод для записи сообщения."""
         pass
 
-# Стратегия логирования в консоль
 class ConsoleLogStrategy(LogStrategy):
     def log(self, message: str):
         """Записывает сообщение в консоль."""
         print(message)
 
-# Стратегия логирования в файл
 class FileLogStrategy(LogStrategy):
     def __init__(self, filename: str):
         """Инициализирует стратегию с указанным именем файла."""
@@ -25,7 +22,6 @@ class FileLogStrategy(LogStrategy):
         with open(self.filename, "a") as file:
             file.write(message + "\n")
 
-# Стратегия логирования в файл в верхнем регистре
 class UpperCaseFileLogStrategy(LogStrategy):
     def __init__(self, filename: str):
         """Инициализирует стратегию с указанным именем файла."""
@@ -36,7 +32,6 @@ class UpperCaseFileLogStrategy(LogStrategy):
         with open(self.filename, "a") as file:
             file.write(message.upper() + "\n")
 
-# Класс логгера, использующий стратегии логирования
 class Logger:
     def __init__(self, strategy: LogStrategy):
         """Инициализирует логгер с заданной стратегией логирования."""
@@ -52,7 +47,6 @@ class Logger:
         formatted_message = f"{timestamp} - {message}"
         self.strategy.log(formatted_message)
 
-# Пример использования логгера
 if __name__ == "__main__":
     # Логирование в консоль
     console_logger = Logger(ConsoleLogStrategy())
